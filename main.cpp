@@ -10,7 +10,7 @@
 #include <SDL/SDL_image.h>
 
 #include "Light.hpp"
-#include "game.hpp"
+#include "Game.hpp"
 
 #define DEBUG(str) debug(str, __LINE__);
 

@@ -1,8 +1,6 @@
-#include <String.h>
-
 class Player {
  private:
-    String name;
+    char *name;
 
  public:
 
