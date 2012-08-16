@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1345137753 source:/home/leonarven/dev/C++/GamerOfLife/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
+	<math.h>
+	<time.h>
+	<vector>
+	<GL/glew.h>
+	<SDL/SDL.h>
+	<SDL/SDL_mixer.h>
+	<SDL/SDL_image.h>
+	"Light.hpp"
+	"game.hpp"
+
+1344857803 /home/leonarven/dev/C++/GamerOfLife/Light.hpp
+	<GL/glew.h>
+
+1345137196 /home/leonarven/dev/C++/GamerOfLife/game.hpp
+	<GL/glew.h>
+	"map.hpp"
+
+1344947015 /home/leonarven/dev/C++/GamerOfLife/map.hpp
+	<stdio.h>
+	<stdlib.h>
+	<GL/glew.h>
+	<vector>
+	"node.hpp"
+
+1344933540 /home/leonarven/dev/C++/GamerOfLife/functions.hpp
+	<GL/glew.h>
+
+1344941190 /home/leonarven/dev/C++/GamerOfLife/node.hpp
+	<stdio.h>
+	<stdlib.h>
+	<GL/glew.h>
+	<vector>
+	"functions.hpp"
+
