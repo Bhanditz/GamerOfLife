@@ -1,3 +1,6 @@
+#ifndef MAP_HPP
+#define MAP_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glew.h>
@@ -120,3 +123,4 @@ class Map {
     }
 };
 
+#endif

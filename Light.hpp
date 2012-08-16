@@ -1,3 +1,6 @@
+#ifndef LIGHT_HPP
+#define LIGHT_HPP
+
 #include <GL/glew.h>
 
 class Light {
@@ -40,3 +43,5 @@ class Light {
 //    void useAmbient()  { glLightfv(this->id, GL_AMBIENT,  { amba, ambb, ambc, ambd }); }
 //    void useDiffuse()  { glLightfv(this->id, GL_DIFFUSE,  { difa, difb, difc, difd }); }
 };
+
+#endif

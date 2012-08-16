@@ -9,15 +9,15 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_image.h>
 
-#include "Light.hpp"
-#include "Game.hpp"
-
 #define DEBUG(str) debug(str, __LINE__);
 
-#define SCREEN_WIDTH	800
+#define SCREEN_WIDTH	700
 #define SCREEN_HEIGHT	700
+#define SCREEN_D        ((double)SCREEN_HEIGHT/(double)SCREEN_WIDTH)
 #define SCREEN_BPP		32
 #define PI				3.1415926535f
+
+#include "Light.hpp"
 
 namespace fps {
     double   fps;
@@ -46,7 +46,7 @@ void debug(const char* str, int line = -1) {
     }
 };
 
-void Quit(int returnCode) {
+void Quit(int returnCode = 0) {
 	SDL_Quit();
 	exit(returnCode);
 };
@@ -77,6 +77,13 @@ float distance(float x1, float y1, float z1, float x2, float y2, float z2)
 float distance(float x1, float y1, float x2, float y2)
     { return distance(x1, y1, 0.0f, x2, y2, 0.0f); }
 
+double s2wX(double x) { return (x-(SCREEN_WIDTH/(2.0)))/(SCREEN_WIDTH/(2.0)); }
+double s2wY(double y) { return -(y-(SCREEN_WIDTH/(2.0*SCREEN_D)))/(SCREEN_WIDTH/(2.0*SCREEN_D)); }
+//float viewpointToScreenX(float x) { return (x+1.0)*SCREEN_WIDTH/2.0; }
+//float viewpointToScreenY(float y) { return SCREEN_HEIGHT * (y+SCREEN_D)/(2*SCREEN_D); }
+
+#include "Game.hpp"
+
 int main( int argc, char **argv ) {
     debug("STARTING", __LINE__);
 
@@ -100,6 +107,9 @@ int main( int argc, char **argv ) {
 //    lights.push_back(tmplight);
 
     Game *game = new Game();
+    game->loadStage("Foobar");
+
+    game->initStage(0);
 
 
     debug("INITIALIZING SDL", __LINE__);
@@ -155,7 +165,8 @@ int main( int argc, char **argv ) {
 	glViewport(0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glFrustum(-1.0, 1.0, -(double)SCREEN_HEIGHT/(double)SCREEN_WIDTH, (double)SCREEN_HEIGHT/(double)SCREEN_WIDTH, 1.0, 100.0);
+//	glFrustum(-1.0, 1.0, -(double)SCREEN_HEIGHT/(double)SCREEN_WIDTH, (double)SCREEN_HEIGHT/(double)SCREEN_WIDTH, 1.0, 100.0);
+	glFrustum(-1.0, 1.0, -1.0, 1.0, 1.0, 100.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -215,7 +226,12 @@ int main( int argc, char **argv ) {
 
                     case SDLK_n: game->initStage(0); break;
                     default: break;
+                } break;
+            default:
+                if (mouse.p == 1) {
+                    printf("%f, %f\n", s2wX(mouse.x), s2wY(mouse.y));
                 }
+                break;
 		}
 
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );

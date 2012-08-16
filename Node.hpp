@@ -1,3 +1,6 @@
+#ifndef NODE_HPP
+#define NODE_HPP
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glew.h>
@@ -42,3 +45,5 @@ class Node {
         glEnd();
     }
 };
+
+#endif
